@@ -1,4 +1,7 @@
-﻿CREATE TABLE [KhachHang] (
+﻿USE DoAn1_CSDL_NC
+GO
+
+CREATE TABLE [KhachHang] (
   [MakH] Varchar(4),
   [Ho] Varchar(10),
   [Ten] Varchar(30),
@@ -11,6 +14,7 @@
   [DienThoai] Varchar(10),
   PRIMARY KEY ([MakH])
 );
+GO
 
 CREATE TABLE [HoaDon] (
   [MaHD] Varchar(4),
@@ -20,6 +24,7 @@ CREATE TABLE [HoaDon] (
   PRIMARY KEY ([MaHD]),
   CONSTRAINT [FK_HD_KH_MaKH] FOREIGN KEY ([MaKH]) REFERENCES [KhachHang]([MakH])
 );
+GO
 
 CREATE TABLE [SanPham] (
   [MaSP] Varchar(4),
@@ -29,6 +34,7 @@ CREATE TABLE [SanPham] (
   [Gia] int,
   PRIMARY KEY ([MaSP])
 );
+GO
 
 CREATE TABLE [CT_HoaDon] (
   [MaHD] Varchar(4),
@@ -41,3 +47,15 @@ CREATE TABLE [CT_HoaDon] (
   CONSTRAINT [FK_CtHD_HD_MaHD] FOREIGN KEY ([MaHD]) REFERENCES [HoaDon]([MaHD]),
   CONSTRAINT [FK_CtHD_SP_MaSP] FOREIGN KEY ([MaSP]) REFERENCES [SanPham]([MaSP])
 );
+GO
+
+--ALTER TABLE [HoaDon]
+--ADD TongTien AS 
+--	(SELECT SUM(ct_hd.ThanhTien)
+--	FROM CT_HoaDon AS ct_hd JOIN HoaDon AS hd
+--	ON ct_hd.MaHD = hd.MaHD
+--	GROUP BY ct_hd.MaHD
+--	)
+
+SELECT *
+FROM KhachHang
