@@ -1,4 +1,10 @@
 ﻿CREATE DATABASE DoAn1_CSDL_NC
+<<<<<<< Updated upstream
+=======
+GO
+
+USE DoAn1_CSDL_NC
+>>>>>>> Stashed changes
 GO
 USE DoAn1_CSDL_NC
 GO
@@ -61,5 +67,54 @@ GO
 --	GROUP BY ct_hd.MaHD
 --	)
 
+
+-- Trigger --
+-- Duy
+-- Trig 1
+--				Them	Xoa		Sua
+-- CT_HoaDon	+		-		+(SoLuong, GiaBan, GiaGiam)
+
+-- Test --
 SELECT *
-FROM KhachHang
+FROM CT_HoaDon
+WHERE MaHD = 'oghi'
+GO
+
+--DELETE FROM CT_HoaDon WHERE MaHD = 'oghi' AND MaSP = 'onac'
+INSERT INTO CT_HoaDon VALUES('oghi', 'onac', 20, 30000, 10, NULL)
+GO
+UPDATE CT_HoaDon SET ThanhTien = 300 WHERE MaHD = 'oghi' AND MaSP = 'onzc'
+GO
+-- Test --
+
+CREATE trigger trg_ThanhTien On CT_HoaDon
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	-- Insert
+	IF EXISTS(SELECT * FROM inserted) AND NOT EXISTS(SELECT * FROM DELETED)
+	OR
+	-- Update
+	(UPDATE(SoLuong) OR UPDATE(GiaBan) OR UPDATE(GiaGiam) OR UPDATE(ThanhTien))
+	BEGIN
+		DECLARE 
+			@maHD VARCHAR(4),
+			@maSP VARCHAR(4)
+		SET @maHD = (SELECT MaHD FROM INSERTED)
+		SET @maSP = (SELECT MaSP FROM INSERTED)
+
+		UPDATE CT_HoaDon
+		SET ThanhTien = 
+		(
+			SELECT ct.SoLuong * (ct.GiaBan - ct.GiaGiam)
+			FROM CT_HoaDon AS ct
+			WHERE ct.MaHD = @maHD AND ct.MaSP = @maSP
+		)
+		WHERE CT_HoaDon.MaHD = @maHD AND CT_HoaDon.MaSP = @maSP
+	END
+END
+GO
+
+-- Nhựt
+
+-- Tuấn
