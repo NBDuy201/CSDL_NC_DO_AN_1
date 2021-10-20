@@ -1,11 +1,6 @@
 ﻿CREATE DATABASE DoAn1_CSDL_NC
-<<<<<<< Updated upstream
-=======
 GO
 
-USE DoAn1_CSDL_NC
->>>>>>> Stashed changes
-GO
 USE DoAn1_CSDL_NC
 GO
 
