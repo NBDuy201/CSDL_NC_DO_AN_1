@@ -1,0 +1,1 @@
+sqlcmd -S DESKTOP-BOQEV7H -i "C:\Users\Duy\Downloads\GenerateData.sql"
