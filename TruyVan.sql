@@ -1,3 +1,85 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c1a25cff2c442f64a4d9bb3a01f89e63bc90f7b1fa4032c9c3ade2d2a31dddff
-size 926
+﻿USE DoAn1_CSDL_NC
+GO
+-- tuấn
+-- cau 3 a) Danh sách các đơn lập trong năm 2020
+SELECT * FROM dbo.HoaDon
+WHERE YEAR(NgayLap) = 2020
+GO
+
+SELECT * FROM dbo.HoaDon
+WHERE DATEPART(YEAR, NgayLap) = 2020
+GO
+
+-- Cau 3 b) Danh sách khách hàng ở TPHCM
+SELECT * FROM dbo.KhachHang
+WHERE Tpho = 'TPHCM'
+GO
+
+-- Cau 3 c) Danh sách các sản phẩm có giá trị trong một khoảng từ ..đến..
+SELECT* FROM dbo.SanPham
+WHERE Gia BETWEEN 100 AND 500
+GO
+
+-- câu 3 d) Danh sách các sản phẩm có số lượng tồn < 100
+SELECT* FROM dbo.SanPham
+WHERE SoLuongTon < 100
+GO
+
+-- câu 3 e) Danh sách các sản phẩm bán chạy nhất (bán nhiều nhất)
+SELECT SoLuong FROM dbo.CT_HoaDon
+GO
+SELECT SP.MaSP, SP.TenSP FROM dbo.SanPham SP 
+JOIN dbo.CT_HoaDon CTHD ON SP.MaSP = CTHD.MaSP
+GROUP BY SP.MaSP, SP.TenSP
+HAVING SUM(CTHD.SoLuong) >= ALL (SELECT SUM(CTHD.SoLuong))
+GO
+
+-- duy
+-- e
+CREATE OR ALTER FUNCTION spBanChayNhat()
+RETURNS TABLE
+AS
+RETURN
+	(
+		SELECT ct.MaSP
+		FROM CT_HoaDon ct
+		GROUP BY ct.MaSP
+		HAVING SUM(ct.SoLuong) >= ALL(
+								-- Tong so luong sp tren ct hoa don
+								SELECT SUM(ct.SoLuong) AS SL
+								FROM CT_HoaDon ct
+								GROUP BY ct.MaSP
+								)
+	)
+GO
+
+SELECT *
+FROM SanPham sp
+WHERE sp.MaSP in (SELECT *
+					FROM dbo.spBanChayNhat())
+GO
+
+-- f
+CREATE OR ALTER FUNCTION spDanhThuCaoNhat()
+RETURNS TABLE
+AS
+RETURN
+	(
+		SELECT ct.MaSP
+		FROM CT_HoaDon ct
+		GROUP BY ct.MaSP
+		HAVING SUM(ct.ThanhTien) >= ALL(
+								-- Doanh thu cac sp
+								SELECT SUM(ct.ThanhTien) AS doanhThu
+								FROM CT_HoaDon ct
+								GROUP BY ct.MaSP
+								)
+	)
+GO
+
+SELECT *
+FROM SanPham sp
+WHERE sp.MaSP in (SELECT *
+					FROM dbo.spDanhThuCaoNhat())
+GO
+
