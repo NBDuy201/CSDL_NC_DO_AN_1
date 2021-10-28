@@ -26,12 +26,21 @@ WHERE SoLuongTon < 100
 GO
 
 -- câu 3 e) Danh sách các sản phẩm bán chạy nhất (bán nhiều nhất)
-SELECT SoLuong FROM dbo.CT_HoaDon
-GO
 SELECT SP.MaSP, SP.TenSP FROM dbo.SanPham SP 
 JOIN dbo.CT_HoaDon CTHD ON SP.MaSP = CTHD.MaSP
 GROUP BY SP.MaSP, SP.TenSP
-HAVING SUM(CTHD.SoLuong) >= ALL (SELECT SUM(CTHD.SoLuong))
+HAVING SUM(CTHD.SoLuong) >= ALL (SELECT SUM(CTHD.SoLuong)
+								FROM dbo.SanPham SP 
+								JOIN dbo.CT_HoaDon CTHD ON SP.MaSP = CTHD.MaSP
+								GROUP BY SP.MaSP)
+GO
+
+-- câu 3 f)
+SELECT SP.MaSP, SP.TenSP, SP.Gia, SP.MoTa, SP.SoLuongTonFROM SanPham SP JOIN CT_HOADON CTHD ON SP.MaSP = CTHD.MaSPGROUP BY SP.MaSP, SP.TenSP, SP.Gia, SP.MoTa, SP.SoLuongTonHAVING SUM(CTHD.ThanhTien) >= ALL 
+							(SELECT SUM(ThanhTien)
+							FROM SanPham SP JOIN CT_HOADON CTHD ON SP.MaSP = CTHD.MaSP
+							GROUP BY SP.MaSP
+							)
 GO
 
 -- duy
@@ -82,4 +91,3 @@ FROM SanPham sp
 WHERE sp.MaSP in (SELECT *
 					FROM dbo.spDanhThuCaoNhat())
 GO
-
