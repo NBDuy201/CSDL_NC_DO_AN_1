@@ -13,7 +13,7 @@ namespace ADB_1_7_DA1
 {
     public class DATAPRO
     {
-        private string Constr = "Data Source=MINHNHUT-HOME;Initial Catalog=DoAn1_CSDL_NC;Integrated Security=True";
+        private string Constr = "Data Source=(local);Initial Catalog=DoAn1_CSDL_NC;Integrated Security=True";
 
         public DataTable ExecuteQuery(string query )
         {

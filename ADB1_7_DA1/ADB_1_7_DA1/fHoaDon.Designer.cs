@@ -64,6 +64,11 @@ namespace ADB_1_7_DA1
             this.Quit_DoanhThu = new System.Windows.Forms.Button();
             this.DoanhThuTheoThang = new System.Windows.Forms.DataGridView();
             this.khachHangTableAdapter = new ADB_1_7_DA1.DoAn1_CSDL_NCDataSetTableAdapters.KhachHangTableAdapter();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.BangHoaDon.SuspendLayout();
@@ -89,6 +94,10 @@ namespace ADB_1_7_DA1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.BangHoaDon);
             this.tabPage1.Controls.Add(this.HoaDon);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
@@ -101,6 +110,7 @@ namespace ADB_1_7_DA1
             // 
             // BangHoaDon
             // 
+            this.BangHoaDon.Controls.Add(this.label4);
             this.BangHoaDon.Controls.Add(this.Refresh_HoaDon);
             this.BangHoaDon.Controls.Add(this.cbbMaKH);
             this.BangHoaDon.Controls.Add(this.NgayLap);
@@ -118,7 +128,7 @@ namespace ADB_1_7_DA1
             // Refresh_HoaDon
             // 
             this.Refresh_HoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Refresh_HoaDon.Location = new System.Drawing.Point(244, 226);
+            this.Refresh_HoaDon.Location = new System.Drawing.Point(140, 278);
             this.Refresh_HoaDon.Name = "Refresh_HoaDon";
             this.Refresh_HoaDon.Size = new System.Drawing.Size(124, 46);
             this.Refresh_HoaDon.TabIndex = 11;
@@ -135,7 +145,7 @@ namespace ADB_1_7_DA1
             this.cbbMaKH.Location = new System.Drawing.Point(173, 105);
             this.cbbMaKH.Name = "cbbMaKH";
             this.cbbMaKH.Size = new System.Drawing.Size(154, 28);
-            this.cbbMaKH.TabIndex = 10;
+            this.cbbMaKH.TabIndex = 2;
             this.cbbMaKH.ValueMember = "MakH";
             // 
             // khachHangBindingSource
@@ -150,7 +160,7 @@ namespace ADB_1_7_DA1
             // 
             // NgayLap
             // 
-            this.NgayLap.CustomFormat = "yyyy-MM-dd H:mm:ss zzz";
+            this.NgayLap.CustomFormat = "MM/dd/yyyy H:mm:ss zzz";
             this.NgayLap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.NgayLap.Location = new System.Drawing.Point(173, 169);
             this.NgayLap.Name = "NgayLap";
@@ -204,11 +214,12 @@ namespace ADB_1_7_DA1
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
+            this.Add.Enter += new System.EventHandler(this.Add_Click);
             // 
             // Quit_HoaDon
             // 
             this.Quit_HoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quit_HoaDon.Location = new System.Drawing.Point(143, 292);
+            this.Quit_HoaDon.Location = new System.Drawing.Point(245, 226);
             this.Quit_HoaDon.Name = "Quit_HoaDon";
             this.Quit_HoaDon.Size = new System.Drawing.Size(124, 46);
             this.Quit_HoaDon.TabIndex = 7;
@@ -294,19 +305,69 @@ namespace ADB_1_7_DA1
             // 
             this.khachHangTableAdapter.ClearBeforeFill = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(79, 327);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(257, 20);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Nhấn Refresh để load lại hóa đơn ! ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(782, 381);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(208, 20);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Phạm Anh Tuấn - 19127084";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(782, 421);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(220, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Trương Minh Nhựt - 19127237";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(782, 460);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(213, 20);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Nguyễn Bảo Duy - 19127084";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(622, 408);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 36);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "ADB1_7";
+            // 
             // fHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 535);
+            this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fHoaDon";
-            this.Text = "Quản lý hóa đơn - ADB_1_7";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Quản lý hóa đơn - ADB1_7";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fHoaDon_FormClosing);
             this.Load += new System.EventHandler(this.fHoaDon_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.BangHoaDon.ResumeLayout(false);
             this.BangHoaDon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
@@ -343,6 +404,11 @@ namespace ADB_1_7_DA1
         private BindingSource khachHangBindingSource;
         private DoAn1_CSDL_NCDataSetTableAdapters.KhachHangTableAdapter khachHangTableAdapter;
         private Button Refresh_HoaDon;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
     }
 }
 
