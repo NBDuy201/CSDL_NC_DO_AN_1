@@ -1,12 +1,15 @@
 Ở trên thanh menu
-Bấm Tool - > connect to sever
-Ở mục sever name nhập sever name của SQL vô
--> ở mục select or enter a database name chọn database thao tác
--> sau đó bấm advanced 
--> Coppy cái dòng cuối cùng trên chữ Ok với cancel
-Sau đó tắt cái đó đi
+Bấm Tool - > connect to Database
+chọn Microsoft SQL Server
+Nhập server name
+nhập tên database vào Select or enter database name
+Bấm Test connection ở dưới 
+hiển thị thông báo kết nối thành công thì nhấn ok
+chọn advanced
+Copy cái dòng cuối cùng trên chữ Ok
+sau đó cancel hết
 vô thư mục DAO ở trên solution Explorer bên tay phải:
-mở DATAPRO lên chép cái vừa coppy vô chổ 
-private string Constr = "Phần coppy"
-->Xong rồi vô app.config copy vô
+mở DATAPRO.cs lên chép cái vừa coppy vô chổ 
+private string Constr = @"Phần coppy"
+Xong rồi vô app.config copy vô
 connectionString="Phần copy"
